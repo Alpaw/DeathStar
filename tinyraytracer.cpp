@@ -373,6 +373,7 @@ int main() {
     Material     mirror(1.0, Vec4f(0.0, 10.0, 0.8, 0.0), Vec3f(1.0, 1.0, 1.0), 1425.);
 
 
+
     Material blue_rubber(1.0, Vec4f(0.9,  0.1, 0.0, 0.0), Vec3f(0, 0, 1),   10.);
 
     Material black_rubber(1, Vec4f(0.5,  0.1, 0.3, 0.7), Vec3f(1,1,1),   100.);
