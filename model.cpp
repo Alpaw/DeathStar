@@ -33,11 +33,28 @@ Model::Model(const char *filename) : verts(), faces() {
             if (3==cnt) faces.push_back(f);
         }
     }
+
+
     std::cerr << "# v# " << verts.size() << " f# "  << faces.size() << std::endl;
+
+    //Pour toute les faces
+
+
+    for(int fi=0;fi<nfaces();fi++){
+        Vec3f edge1 = point(vert(fi,1)) - point(vert(fi,0));
+        Vec3f edge2 = point(vert(fi,2)) - point(vert(fi,0));
+        list.push_back(cross(edge2,edge1).normalize());
+    }
+
+
+
 
     Vec3f min, max;
     get_bbox(min, max);
 }
+
+
+
 
 // Moller and Trumbore
 bool Model::ray_triangle_intersect(const int &fi, const Vec3f &orig, const Vec3f &dir, float &tnear) {
@@ -68,6 +85,7 @@ int Model::nfaces() const {
     return (int)faces.size();
 }
 
+
 void Model::get_bbox(Vec3f &min, Vec3f &max) {
     min = max = verts[0];
     for (int i=1; i<(int)verts.size(); ++i) {
@@ -92,6 +110,11 @@ Vec3f &Model::point(int i) {
 int Model::vert(int fi, int li) const {
     assert(fi>=0 && fi<nfaces() && li>=0 && li<3);
     return faces[fi][li];
+}
+
+Vec3f Model::getVecList(int i) {
+
+    return list.at(i);
 }
 
 std::ostream& operator<<(std::ostream& out, Model &m) {

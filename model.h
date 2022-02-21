@@ -8,13 +8,20 @@ class Model {
 private:
     std::vector<Vec3f> verts;
     std::vector<Vec3i> faces;
+    std::vector<Vec3f> list  ;
+
 public:
     Model(const char *filename);
 
     int nverts() const;                          // number of vertices
     int nfaces() const;                          // number of triangles
+    Vec3f getVecList(int i);
 
-    bool ray_triangle_intersect(const int &fi, const Vec3f &orig, const Vec3f &dir, float &tnear);
+
+
+        bool ray_triangle_intersect(const int &fi, const Vec3f &orig, const Vec3f &dir, float &tnear);
+
+
 
     const Vec3f &point(int i) const;                   // coordinates of the vertex i
     Vec3f &point(int i);                   // coordinates of the vertex i
